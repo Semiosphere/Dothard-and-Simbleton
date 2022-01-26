@@ -146,5 +146,30 @@ const businesses = [
       return copyOfBusinesses
   }
 
+//function to check if each business's state is NY 
+const inNewYork = (businessObject) => {
+  if(businessObject.addressStateCode === "NY") {
+    return true
+  }
+  return false
+}
 
+//function to create an array of businesses filtered by NY location boolean
+export const NYBusinesses = () => {
+  const filteredItems = businesses.filter( inNewYork )
+  return filteredItems
+}
 
+//function to check if each business's industry is manufacturing 
+const isManufacturer = (businessObject) => {
+  if(businessObject.companyIndustry === "Manufacturing") {
+    return true
+  }
+  return false
+}
+
+//function to create an array of businesses filtered by industry boolean
+export const manufacturingBusinesses = () => {
+  const filteredItems = businesses.filter( isManufacturer )
+  return filteredItems
+}
