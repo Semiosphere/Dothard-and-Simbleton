@@ -173,3 +173,19 @@ export const manufacturingBusinesses = () => {
   const filteredItems = businesses.filter( isManufacturer )
   return filteredItems
 }
+
+
+//function to produce array containing only purchasing agent info
+export const agents = () => {
+  const onlyAgents = businesses.map(businessObject => {
+    let purchasingAgent = {
+      
+        fullName: `${businessObject.purchasingAgent.nameFirst} ${businessObject.purchasingAgent.nameLast}`,
+        company: `${businessObject.companyName}`,
+        phoneNumber: `${businessObject.phoneWork}`
+    
+    }
+    return purchasingAgent
+  })
+  return onlyAgents
+}

@@ -1,10 +1,14 @@
 import { getBusinesses, NYBusinesses, manufacturingBusinesses } from "./database.js"
 import { Business } from "./Business.js"
+import { agents } from "./database.js"
+import { PurchasingAgent } from "./PurchasingAgents.js"
 
 
 const mainContainer = document.querySelector("#container")
 const newYorkContainer = document.querySelector(".businessList--newYork")
 const manufacturingContainer = document.querySelector(".businessList--manufacturing")
+const purchasingAgentContainer = document.querySelector(".agents")
+
 
 
 export const BusinessList = () => {
@@ -17,7 +21,7 @@ export const BusinessList = () => {
     );
 
     let NYBusinessesArray = NYBusinesses()
-    newYorkContainer.innerHTML += "<h1> New York Businesses </h1>"
+    newYorkContainer.innerHTML += "<h1>New York Businesses</h1>"
     NYBusinessesArray.forEach(
         (businessObject) => {
             newYorkContainer.innerHTML += Business(businessObject)
@@ -25,10 +29,19 @@ export const BusinessList = () => {
     );
 
     let manufacturingBusinessesArray = manufacturingBusinesses()
-    manufacturingContainer.innerHTML += "<h1> Manufacturing Businesses </h1>"
+    manufacturingContainer.innerHTML += "<h1>Manufacturing Businesses</h1>"
     manufacturingBusinessesArray.forEach(
         (businessObject) => {
             manufacturingContainer.innerHTML += Business(businessObject)
         }
     );
+
+    let purchasingAgentsArray = agents()
+    purchasingAgentContainer.innerHTML += "<h1>Purchasing Agents</h1>"
+    purchasingAgentsArray.forEach(
+        (businessObject) => {
+            purchasingAgentContainer.innerHTML += PurchasingAgent(businessObject)
+        }
+    );
 }
+
