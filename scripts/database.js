@@ -174,7 +174,6 @@ export const manufacturingBusinesses = () => {
   return filteredItems
 }
 
-
 //function to produce array containing only purchasing agent info
 export const agents = () => {
   const onlyAgents = businesses.map(businessObject => {
@@ -188,4 +187,20 @@ export const agents = () => {
     return purchasingAgent
   })
   return onlyAgents
+}
+
+//function to filter businesses into new array meeting search criteria
+export const findCompanyBySearch = (searchCriteria) => {
+  const matchingCompany = businesses.filter(businessObject => businessObject.companyName.includes(searchCriteria))
+
+  return matchingCompany
+}
+
+
+//function to filter Purchasing Agents into new array meeting search criteria
+export const findAgentBySearch = (searchCriteria) => {
+  let agentsArray = agents()
+  let matchingAgent = agentsArray.filter(businessObject => businessObject.fullName.includes(searchCriteria))
+
+  return matchingAgent
 }

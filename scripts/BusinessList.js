@@ -1,6 +1,6 @@
 import { getBusinesses, NYBusinesses, manufacturingBusinesses } from "./database.js"
 import { Business } from "./Business.js"
-import { agents } from "./database.js"
+import { agents, findCompanyBySearch, findAgentBySearch } from "./database.js"
 import { PurchasingAgent } from "./PurchasingAgents.js"
 
 
@@ -43,5 +43,39 @@ export const BusinessList = () => {
             purchasingAgentContainer.innerHTML += PurchasingAgent(businessObject)
         }
     );
+
+    const companySearchResultArticle = document.querySelector(".foundCompanies")
+
+    document
+        .querySelector("#pageSearch")
+            .addEventListener(
+                "keypress",
+                keyPressEvent => {
+                    if (keyPressEvent.charCode === 13) {
+                         businessArray.filter(businessObject => businessObject.companyName.includes(keyPressEvent.target.value/*.toUpperCase()*/))
+
+                        let searchBusinesses = findCompanyBySearch(keyPressEvent.target.value);
+                        searchBusinesses.forEach((businessObject) => {companySearchResultArticle.innerHTML += Business(businessObject)})
+                    }
+            });    
+    
+
+
+
+    const agentSearchResultArticle = document.querySelector(".foundAgents")
+
+    document
+        .querySelector("#pageSearch")
+            .addEventListener(
+                "keypress",
+                keyPressEvent => {
+                    if (keyPressEvent.charCode === 13) {       
+                                let searchAgents = findAgentBySearch(keyPressEvent.target.value);
+                                searchAgents.forEach((businessObject) => {agentSearchResultArticle.innerHTML += PurchasingAgent(businessObject)})
+                            }
+                    });            
+ 
 }
+
+
 
